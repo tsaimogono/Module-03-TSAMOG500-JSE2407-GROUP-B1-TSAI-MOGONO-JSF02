@@ -10,3 +10,14 @@
     export let price;
     export let rating;
     export let category;
+    
+  //Function to handle click events, navigating to the product details page
+  function handleClick() {
+    navigate(`/products/${id}`);
+  }
+  //Function to handle adding a product to favorites
+  function addToFavourites(event) {
+    //Prevents click event from propagating to parent elements
+    event.stopPropagation();
+  }
+</script>
