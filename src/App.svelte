@@ -1,5 +1,5 @@
 <script>
-  import { Router, Route} from 'svelte-routing';
+  import { Router, Route} from 'svelte-spa-router';
   import Products from './Routes/+Products.svelte';
   import ProductDetail from '../src/Routes/+ProductDetail.svelte';
   import Navbar from './Routes/+Navbar.svelte';
