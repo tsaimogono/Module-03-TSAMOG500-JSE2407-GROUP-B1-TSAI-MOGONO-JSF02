@@ -20,3 +20,28 @@
     <input type="password" placeholder="Password" bind:value={password} />
     <button on:click={handleLogin}>Login</button>
 </div>
+
+<style>
+    .login-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form h1 {
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4rem
+
