@@ -1,9 +1,22 @@
 <script>
+
+    /**
+     * @module LoginForm
+     * @description A simple login form component that handles user authentication.
+     * 
+     * @param {Object} Stores - The Stores module containing application-wide state management.
+     * @param {Writable<boolean>} isLoggedIn - Writable store to manage the user's login state.
+     */
     import { isLoggedIn } from '../Stores';
     
     let username = '';
     let password = '';
 
+    /**
+     * Handles the login process by checking if both username and password are provided.
+     * Sets the `isLoggedIn` store to `true` if credentials are valid and shows an alert.
+     * Shows an alert if any of the credentials are missing.
+     */
     function handleLogin() {
         if (username && password) {
             isLoggedIn.set(true);

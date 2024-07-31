@@ -1,4 +1,14 @@
 <script>
+
+    /**
+     * @module ProductDetail
+     * @description A component that fetches and displays detailed information about a product based on its ID.
+     * 
+     * @import { onMount } - Lifecycle function for setting up data fetching when the component mounts.
+     * @import { Link } - Component from 'svelte-routing' for navigation.
+     * 
+     * @prop {string} id - The ID of the product to fetch and display.
+     */
     import { onMount } from 'svelte';
     import { Link } from 'svelte-routing';
     
@@ -8,6 +18,10 @@
     let loading = true;
     let error = null;
   
+    /**
+     * Fetches product data when the component mounts.
+     * Sets `product` with the fetched data, or `error` if an error occurs.
+     */
     onMount(async () => {
         try {
             const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -28,7 +42,7 @@
   {:else if error}
   <p>Error: {error}</p>
   {:else if product}
-  
+
   <div class="product-details">
     <img class="image" src={product.image} alt={product.title} width="200" />
     <h1>{product.title}</h1>
@@ -45,6 +59,18 @@
   {/if}
   
   <style>
+
+    /**
+     * Styles for the ProductDetail component.
+     * 
+     * .product-details - Container for product details with border, padding, and centered text.
+     * .image - Styling for the product image with rounded corners and margin.
+     * h1 - Styling for the product title.
+     * p - Styling for paragraphs with margin.
+     * button - Styling for the button with padding, background color, and rounded corners.
+     * 
+     * @media (max-width: 768px) - Responsive adjustments for smaller screens.
+     */
 
   .product-container {
     display: flex;

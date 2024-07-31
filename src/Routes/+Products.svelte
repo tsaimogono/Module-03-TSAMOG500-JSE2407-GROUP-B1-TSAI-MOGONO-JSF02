@@ -1,4 +1,18 @@
 <script>
+
+    /**
+     * @module ProductList
+     * @description A component that displays a list of products with filtering and sorting options.
+     * 
+     * @import { onMount } - Lifecycle function for fetching data when the component mounts.
+     * @import { Link } - Component from 'svelte-routing' for navigation.
+     * @import { filteredProducts } - Svelte store containing the list of filtered products.
+     * 
+     * @property {Array} products - Array of product objects fetched from the API.
+     * @property {Array} categories - Array of unique product categories for filtering.
+     * @property {string} selectedCategory - The category selected for filtering products.
+     * @property {string} selectedPriceOrder - The price order selected for sorting products.
+     */
     import { onMount } from 'svelte';
     import { Link } from 'svelte-routing';
     import { filteredProducts } from '../Stores.js';
@@ -8,6 +22,11 @@
     let selectedCategory = '';
     let selectedPriceOrder = '';
 
+    /**
+     * Fetches products from the API and initializes categories for filtering.
+     * Sets the fetched products to the `filteredProducts` store.
+     */
+
     onMount(async () => {
         const res = await fetch('https://fakestoreapi.com/products');
         products = await res.json();
@@ -16,6 +35,10 @@
         categories = [...new Set(products.map(product => product.category))];
     });
 
+    /**
+     * Filters and sorts products based on the selected category and price order.
+     * Updates the `filteredProducts` store with the filtered and sorted products.
+     */
     function filterProducts() {
         let tempProducts = products;
 
@@ -31,10 +54,33 @@
 
         filteredProducts.set(tempProducts);
     }
+
+    /**
+     * Array representing stars for rating display.
+     * @type {Array}
+     */
     const stars = Array(5).fill(0);
 </script>
 
 <style>
+
+
+    /**
+     * Styles for the ProductList component.
+     * 
+     * .product-grid - Grid layout for displaying products with responsive columns.
+     * .product-card - Card styling for individual product display.
+     * .image - Styling for product images.
+     * h2 - Styling for product titles.
+     * p - Styling for text elements.
+     * button - Styling for buttons with hover effect.
+     * .stars - Styling for star icons used in product ratings.
+     * .filter-section - Layout for filter and sort controls.
+     * 
+     * @media (max-width: 1200px) - Adjust grid to 3 columns.
+     * @media (max-width: 900px) - Adjust grid to 2 columns.
+     * @media (max-width: 600px) - Adjust grid to 1 column and style adjustments.
+     */
     .product-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */

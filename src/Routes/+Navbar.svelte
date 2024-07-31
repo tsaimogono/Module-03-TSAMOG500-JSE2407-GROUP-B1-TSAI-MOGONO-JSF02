@@ -1,13 +1,32 @@
 <script>
+
+    /**
+     * @module Navbar
+     * @description A responsive navigation bar component with a hamburger menu for mobile screens.
+     * 
+     * @import {cart, wishlist, isLoggedIn} - Stores used for cart, wishlist, and login state.
+     * @import {onMount} - Lifecycle function for setting up and cleaning up event listeners.
+     * @import {get} - Function to access store values.
+     */
+
     import { cart, wishlist, isLoggedIn } from '../Stores';
     import { onMount } from 'svelte';
     import { get } from 'svelte/store';
 
     let isMenuOpen = false;
 
+    /**
+     * Toggles the visibility of the mobile menu.
+     */
     function toggleMenu() {
         isMenuOpen = !isMenuOpen;
     }
+
+
+    /**
+     * Sets up a resize event listener to close the menu when the screen size increases beyond mobile size.
+     * Cleans up the event listener on component destruction.
+     */
 
     // Close the menu when the screen size increases beyond mobile
     onMount(() => {
