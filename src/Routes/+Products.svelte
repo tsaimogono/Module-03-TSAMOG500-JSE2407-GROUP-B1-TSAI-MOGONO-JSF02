@@ -37,8 +37,11 @@
 <style>
     .product-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */
         gap: 20px;
+        margin: 0 auto; /* Center grid horizontally */
+        max-width: 1200px; /* Optional: limit max width of the grid */
+        padding: 0 20px; /* Optional: add padding to the sides */
     }
     
     .product-card {
@@ -50,7 +53,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
     }
-
+    
     .product-card:hover {
         transform: translateY(-5px);
     }
@@ -62,16 +65,16 @@
         object-fit: contain;
         margin-bottom: 16px;
     }
-
+    
     .product-card h2 {
         font-size: 20px;
         margin-bottom: 8px;
     }
-
+    
     .product-card p {
         margin: 4px 0;
     }
-
+    
     button {
         background-color: #3b82f6; /* Tailwind's blue-500 */
         color: white;
@@ -80,47 +83,68 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
     .stars {
         width: 1.25rem;
         height: 1.25rem;
     }
-
-    button:hover {
-        background-color: #0056b3;
-    }
-
+    
     .filter-section {
         margin-bottom: 20px;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
-
+    
     .filter-section label, .filter-section select {
         margin-right: 10px;
     }
-
-    @media (max-width: 768px) {
+    
+    /* Media queries for responsiveness */
+    
+    /* 1200px and below: 3 cards per row */
+    @media (max-width: 1200px) {
+        .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    /* 900px and below: 2 cards per row */
+    @media (max-width: 900px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    /* 600px and below: 1 card per row */
+    @media (max-width: 600px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+    
         .product-card {
             padding: 10px;
             margin: 10px;
         }
-
+    
         .product-card h2 {
             font-size: 18px;
         }
-
-        .product-card button {
+    
+        button {
             font-size: 14px;
             padding: 8px 16px;
         }
-
+    
         .filter-section {
             flex-direction: column;
         }
     }
-</style>
+    </style>
 
 <div>
     <h1>Products</h1>
@@ -145,7 +169,7 @@
     <div class="product-grid">
         {#each $filteredProducts as product}
             <div class="product-card">
-                <img src={product.image} alt={product.title} />
+                <img src={product.image} alt={product.title} width="100" />
                 <h2>{product.title}</h2>
                 <div class="flex items-center mb-2">
                     {#each stars as _, i}
@@ -160,10 +184,11 @@
                         />
                       </svg>
                     {/each}
-                </div>
+                  </div>
+            
                 <p>Category: {product.category}</p>
                 <p>Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/product/${product.id}`}>
                     <button>View Product</button>
                 </Link>
             </div>
