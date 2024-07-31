@@ -48,7 +48,7 @@
         <div class="navbar-brand">
             <a href="/" class="logo-link">
                 SwiftCart 
-                <img src="./assets/online-shop.png" />
+            
               </a>
         </div>
         <div class="navbar-menu">
