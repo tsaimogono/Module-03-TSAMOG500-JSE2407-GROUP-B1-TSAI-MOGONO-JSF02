@@ -237,7 +237,19 @@
                 <Link to={`/product/${product.id}`}>
                     <button>View Product</button>
                 </Link>
-            </div>
+            </div> 33/*6
+            
+
+
+
+
+
+
+
+
+
+
+            
         {/each}
     </div>
 </div>
